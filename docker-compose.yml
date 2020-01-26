@@ -1,8 +1,28 @@
 version: '3'
 services:
-        bookapp:
-                build: ./bookapp
-        redis:               
-                build: ./redis
-        postgres:
-                build: ./postgres
+  bookapp:
+    build: ./bookapp
+    environment:
+        POSTGRES_HOST: db
+        POSTGRES_USER: postgres
+        POSTGRES_DATABASE: book_store
+        POSTGRES_PASSWORD: postmalone
+        POSTGRES_PORT: 5432
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+  gateaway:
+    image: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - bookapp
+    ports:
+      - 80:80
+  db:
+    image: postgres
+    environment:
+        POSTGRES_PASSWORD: postmalone
+    volumes:
+      - ./bookapp/init1.sql:/docker-entrypoint-initdb.d/init.sql
