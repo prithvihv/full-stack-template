@@ -1,7 +1,6 @@
-FROM nixos/nix
-
-
+FROM node:lts
 WORKDIR /usr/src/app
 
 COPY . .
-CMD [ "sh" , "./sleep.sh" ]
+RUN npm install
+CMD ["node","app.js"]

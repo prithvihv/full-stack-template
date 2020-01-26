@@ -6,6 +6,7 @@ stdenv.mkDerivation {
     nodejs-12_x
   ];
   shellHook = ''
+    chmod 777  ./node_modules/.bin/*
     export PATH="$PWD/node_modules/.bin/:$PATH"
    '';
 }

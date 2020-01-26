@@ -1,11 +1,11 @@
 const { Client } = require('pg')
 
 const client = new Client({
-    host: '127.0.0.1',
-    database: 'book_store',
+    host: 'db',
+    database: 'postgres',
     port: 5432,
     user: 'postgres',
-    password: 'pageupto123',
+    password: 'postmalone',
 })
 
 let User = function () { }
