@@ -1,0 +1,8 @@
+version: '3'
+services:
+        bookapp:
+                build: ./bookapp
+        redis:               
+                build: ./redis
+        postgres:
+                build: ./postgres

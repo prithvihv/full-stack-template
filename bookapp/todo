@@ -1,0 +1,22 @@
+- password is stored directly on the database
+- remove morgan
+- write rest of User
+
+
+
+
+
+
+- all 
+
+Implement API tests for all endpoints 
++>https://scotch.io/tutorials/test-a-node-restful-api-with-mocha-and-chai
+
+Implement Caching policy via Redis/Memcached
+
+Deploy this API on a EC2 instance or dockerize the application
+
+
+
+- Assumptions :
+* cannot publish a book without being a user/author 
