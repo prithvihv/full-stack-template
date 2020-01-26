@@ -14,7 +14,7 @@ User.prototype.create = async (uname, pass, aname) => {
     const text = 'INSERT INTO users (username,password,auther_name) VALUES($1, $2,$3) RETURNING *'
     const values = [uname, pass, aname]
     let result = await client.query(text, values);
-    console.log(`[DB] inserted into User : ${uname}`)
+    // console.log(`[DB] inserted into User : ${uname}`)
     return result
     // try {
     // } catch (e) {
@@ -41,17 +41,24 @@ User.prototype.getbyUnamePass = async (uname, pass) => {
     return result;
 }
 
+User.prototype.deleteall = async () => {
+    const text = `Delete FROM users;`
+    let result = await client.query(text);
+    return result
+}
+
 let Book = function () { }
 
 Book.prototype.create = async (t, d, curl, p, u_id) => {
-    const text = 'INSERT INTO users (title,description,cover_url,price,u_id) VALUES($1, $2, $3, $4, $5) RETURNING *'
+    const text = 'INSERT INTO books (title,description,cover_url,price,u_id) VALUES($1, $2, $3, $4, $5) RETURNING *'
     const values = [t, d, curl, p, u_id]
     let result = await client.query(text, values);
-    console.log(`[DB] inserted into Book : ${t}`)
+    // console.log(`[DB] inserted into Book : ${t}`)
+    return result
 }
 
 Book.prototype.getbyid = async (id) => {
-    const text = 'SELECT * FROM books WHERE book_id=$1;'
+    const text = 'SELECT * FROM books WHERE book_id=$1'
     const values = [id]
     let result = await client.query(text, values);
     return result
@@ -80,6 +87,12 @@ Book.prototype.deleteBook = async (id) => {
     const text = `Delete FROM books WHERE book_id=$1;`
     const values = [id]
     let result = await client.query(text, values);
+    return result
+}
+
+Book.prototype.deleteall = async () => {
+    const text = `Delete FROM books;`
+    let result = await client.query(text);
     return result
 }
 

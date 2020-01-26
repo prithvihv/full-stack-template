@@ -1,6 +1,11 @@
 const axios = require("axios").default
 const qs = require("querystring")
+const fs = require("fs")
+const path = require("path")
+const jwt = require('jsonwebtoken');
+const privateKey = fs.readFileSync(path.resolve(__dirname, '../secret/jwtRS256.key'));
 
+// current not using was plannin on making a token providing services
 let getToken = async (u_id) => {
     const config = {
         headers: {
@@ -16,6 +21,12 @@ let getToken = async (u_id) => {
     return token
 }
 
+//https://gist.github.com/ygotthilf/baa58da5c3dd1f69fae9 sha key
+let createToken = async (payload) => {
+    var token = jwt.sign(payload, privateKey, { algorithm: 'RS256' });
+    return token
+}
+
 module.exports = {
-    getToken: getToken
+    getToken: createToken
 }

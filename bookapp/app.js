@@ -1,6 +1,7 @@
 const express = require('express')
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser')
+const db = require("./util/db")
 const fs = require("fs")
 
 var user = require('./routes/user');
@@ -39,4 +40,4 @@ app.use('/api/book', book);
 //   res.render('error');
 // });
 
-app.listen(port, () => console.log(`Book app listening on port ${port}!`))
+module.exports = app.listen(port, () => console.log(`Book app listening on port ${port}!`))

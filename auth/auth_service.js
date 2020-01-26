@@ -4,9 +4,10 @@ const port = 7777
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const fs = require("fs")
+const path = require("path")
 
-var privateKey = fs.readFileSync('jwtRS256.key');
-var publicKey = fs.readFileSync("jwtRS256.key.pub")
+var privateKey = fs.readFileSync(path.resolve(__dirname, './jwtRS256.key'));
+var publicKey = fs.readFileSync(path.resolve(__dirname, "jwtRS256.key.pub"));
 /*
 curl -X POST http://localhost:7777/auth -H 'content-type: application/x-www-form-urlencoded' -d 'id=78&user_name=prithvi&password=prithvi'
   */
@@ -39,6 +40,6 @@ function log(token) {
   });
 }
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+module.exports = app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 //https://gist.github.com/ygotthilf/baa58da5c3dd1f69fae9 sha key

@@ -23,10 +23,13 @@ router.get('/:id', async (req, res, next) => {
 // need to test
 router.post('/', passport.authenticate('jwt', { session: false }), async (req, res, next) => {
     let title = req.body.title;
-    let desc = req.body.desciption;
+    let desc = req.body.description;
     let cover_url = req.body.cover_url;
     let price = req.body.price;
     let u_id = req.user.u_id;
+    if (req.user.username == "Thanos") {
+        return res.status(400).json({ "message": " :/ i have order to keep you out" })
+    }
     let dbbookres = await Book.prototype.create(title, desc, cover_url, price, u_id);
     let book = dbbookres.rows[0];
     return res.json({ book: book })
